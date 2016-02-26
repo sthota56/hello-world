@@ -124,7 +124,7 @@ FILE	*CAlphaFPtr=NULL, *inPDBFilePtr=NULL, *AASeqFilePtr=NULL;
 XYZCoord	*infoPtr=NULL, *lastPtr=NULL;
 boolean consecutive = true;
 
-char aaSeq[kMaxArraySize/3];
+//char aaSeq[kMaxArraySize/3];
  
 char aaSeq[1400];
 
