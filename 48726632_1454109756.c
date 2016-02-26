@@ -130,7 +130,7 @@ if (utype == 'i')
 		newPtr->iScore[i] = 0;
 		}
 	}
-else 
+else
 	{
 	for (i = 0; i < ((int) kMaxArraySize/3); i++)
 		{
@@ -138,6 +138,7 @@ else
 		}
 	}
 return ( newPtr );
+
 } /* end InitArray */
 
 
@@ -185,7 +186,7 @@ for (i = 0; i < 2; i++)
 	gCurRefInfo[i]->lowerLimit = 0;
 	gCurRefInfo[i]->hasPhaseBias = false;
 	gCurRefInfo[i]->hasPolarity = false;
-	
+
 	gCurScoreInfo[i] = (ScoringInfo*) Malloc(sizeof(ScoringInfo));
 	gCurScoreInfo[i]->whichType = 0;
 	strcpy(gCurScoreInfo[i]->scoringRule, "[none available]");
@@ -476,7 +477,7 @@ fprintf( stderr,  "o=observed data or r=reference data?");
 if (GetCommandChar("or") == 'r') isRef = 1;
 
 return(isRef);
-} 
+}
 
 /*******************  void GetStats(GeneData *statsPtr)  *********************/
 /* */
@@ -585,7 +586,7 @@ else
 		stdDev += SquareIt(gScoreArray[type]->fScore[i] - ave)/gCurProtInfo[type]->size;
 		}
 	}
-	
+
 stdDev = sqrt(stdDev);
 gCurProtInfo[type]->stdDev = stdDev;
 gCurProtInfo[type]->ave = ave;
@@ -898,7 +899,7 @@ fprintf( stderr, "\nbased on the observed gene data)\n");
 for (i = 0; i < numExons; i++)
 	{
 	/* ShowLoopProgress("LognormalExons", 2, i);*/
-	logSize[i] = (float) log((float) gGeneDataPtr[2]->number[i]); 
+	logSize[i] = (float) log((float) gGeneDataPtr[2]->number[i]);
 	logNormMu += (float) (logSize[i]/ numExons);
 	}
 
@@ -953,7 +954,7 @@ curPtr->nextSet = NULL;
 free(nextPtr);
 
 if (gOutputRefGenes) WriteGeneData(3, true, false);
-	
+
 /* updating current info */
 
 strcpy(gCurRefInfo[1]->refModel, lognExn);
@@ -1425,7 +1426,7 @@ if (response == 'y')
 		}
 	fprintf( stderr, "\n\nThis information is not saved, so you might want to print the screen here");
 	HoldIt();
-	} 
+	}
 else
 	{
 	domainCenter[0]->resNum = numResidues;
@@ -1577,16 +1578,16 @@ while (!done)
 	{
 	numDists = 0;
 	sum = 0;
-	
-	/* setting left and right boundaries of the window.  As soon as resNum - k is greater 
+
+	/* setting left and right boundaries of the window.  As soon as resNum - k is greater
 	than 0, then it is time to start moving the left window boundary.  The right bound
 	is incremented until it reaches the last residue */
-	
+
 	if ((iPtr->resNum - k) > 0) leftBndPtr = leftBndPtr->nextRes;
 	if ((iPtr->resNum + k) < numResidues) rtBnd++;
 	else rtBnd = numResidues; /* necessary just in case the protein is < k residues */
 	jPtr = leftBndPtr;
-	
+
 	while ((jPtr != NULL) && (jPtr->resNum <= rtBnd))
 		{
 		if (jPtr != iPtr)
@@ -1603,7 +1604,7 @@ while (!done)
 	if (iPtr->resNum == numResidues) done = true;
 	else iPtr = iPtr->nextRes;
 	}
-	
+
 /* updating info on size, ave, stdDev, scoring rule */
 
 gCurProtInfo[1]->size = numResidues;
@@ -1810,7 +1811,7 @@ while (intronPtr != NULL)
 					break;
 					}
 				}
-			}			
+			}
 		j++;
 		}
 	if (intronPtr == gGeneDataPtr[0])
@@ -1876,7 +1877,7 @@ if ((whichTest == 'c') || (whichTest == 'a')) /* that is, if the test involved i
 	*dupRefGeneInfo = *gCurRefInfo[0];
 	*dupScoreInfo = *gCurScoreInfo[0];
 	}
-	
+
 if (whichTest == 'e')  /* test is for extensity */
 	{
 	gOkToTestSet[1] = false;
@@ -1884,7 +1885,7 @@ if (whichTest == 'e')  /* test is for extensity */
 	*dupObsGeneInfo = *gCurObsInfo[1];
 	*dupRefGeneInfo = *gCurRefInfo[1];
 	*dupScoreInfo = *gCurScoreInfo[1];
-	}		
+	}
 
 if (whichTest == 'e')  /* test uses atomic coordinates */
 	{
@@ -2066,10 +2067,10 @@ while (whichRef != 'r')
 	fprintf( stderr, "\n\tl = LOGNORMALLY distributed exon sizes with observed mu and stdDev");
 	fprintf( stderr, "\n\te = EXPONENTIALLY distributed exon sizes");
 	fprintf( stderr, "\n\n\tr = RETURN to main");
-	
+
 	fprintf( stderr, "\n");
 	whichRef = GetCommandChar("pleuibr");
-	
+
 	if (strchr("ple", whichRef))
 		{
 		if ( !GetNumValues(gGeneDataPtr[2]))
@@ -2254,7 +2255,7 @@ while (command != 'r')
 	fprintf( stderr, "\n\tn = generate NOISY data by sliding and deletion");
 	fprintf( stderr, "\n\n\tr = RETURN to main menu");
 	fprintf( stderr, "\n");
-	
+
 	command = GetCommandChar("evsilrn");
 	switch (command)
 		{
@@ -2305,7 +2306,7 @@ while (command != 'r')
 			}
 		case 'n':
 			{
-			if (gGeneDataPtr[0] == NULL) 
+			if (gGeneDataPtr[0] == NULL)
 				{
 				ErrNoDataTo("generate noisy data");
 				}
@@ -2319,7 +2320,7 @@ while (command != 'r')
 				}
 			break;
 			}
-		} 
+		}
 	}
 } /* end of GeneDataMenu */
 
@@ -2499,8 +2500,8 @@ while (whichSetting != 'r')
 	else fprintf( stderr, " (on) ");
 	fprintf( stderr, "\n\t6 = change the sliding limit for intron positions (%d bp)", gSlideLimit);
 	fprintf( stderr, "\n\t7 = change how phase-0 introns are interpreted (%c)", gPhaseZero);
-	fprintf( 	stderr, 	"\n\n\ta = ACKNOWLEDGEMENTS"); 	
-	fprintf( 	stderr, 	"\n\th = HELP"); 	
+	fprintf( 	stderr, 	"\n\n\ta = ACKNOWLEDGEMENTS");
+	fprintf( 	stderr, 	"\n\th = HELP");
 	fprintf( stderr, "\n\tr = RETURN to main menu");
 
 	fprintf( stderr, "\n");
@@ -2687,7 +2688,7 @@ while (whichSetting != 'r')
 /* */
 /*****************************************************************************/
 
-char	GetMainCommand(void)  
+char	GetMainCommand(void)
 {
 char	command = 0;
 
@@ -2807,11 +2808,13 @@ switch(command)
 
 void DoLastRites(void)
 {
+	char ch ;
 if (gCurExptInfoPtr->exptNum > 1)
 	{
 	fprintf(stderr, "\n!\n!\n!ATTN: data in memory cannot be saved to disk; last chance is to record the");
 	fprintf(stderr, "\ninfo that follows by hand or with screen dumps.  Press <enter> to proceed.");
-	while ( getchar() != '\n' );
+	ch = gechar();
+	while ( ch != '\n' );
 	WriteExptList(false);
 	}
 fprintf(stderr, "\nexiting abacus due to error.  bye.");
